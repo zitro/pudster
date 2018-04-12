@@ -10,7 +10,7 @@
 /build
 
 #hiding apikey
-./components/Apikey.js
+./src/components/Apikey.js
 
 # misc
 .DS_Store
