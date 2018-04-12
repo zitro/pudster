@@ -9,6 +9,9 @@
 # production
 /build
 
+#hiding apikey
+./components/Apikey.js
+
 # misc
 .DS_Store
 .env.local

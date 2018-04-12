@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import MapContainer from './MapContainer'
+import MapContainer from './components/MapContainer'
 import './App.css';
 
 
 class App extends Component {
   render() {
-    // const apikey="AIzaSyD4jflUGcUZPACxuTKOufXJG71rPE5uQzg"
+
     return (
       <div className="App">
         <MapContainer/>
@@ -15,5 +15,3 @@ class App extends Component {
 }
 
 export default App;
-
-//apikey=AIzaSyD4jflUGcUZPACxuTKOufXJG71rPE5uQzg
