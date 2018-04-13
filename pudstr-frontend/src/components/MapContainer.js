@@ -30,9 +30,3 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: (APIKEY)
 })(MapContainer)
-
-// var request = {
-// 	location: pyrmont,
-// 	radius: '500',
-// 	types: ['restroom']
-// };
