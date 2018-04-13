@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import MapContainer from './components/MapContainer'
 import './App.css';
-import APPTEST2 from './Apptest2';
+import APPTEST2 from './components/SearchForm';
 import MapContainer from './components/MapContainer'
 
 

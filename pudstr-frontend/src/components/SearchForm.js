@@ -4,7 +4,7 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 class SimpleForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'Enter Your Address'}
+    this.state = { address: 'Your Location Please'}
     this.onChange = (address) => this.setState({ address })
   }
 
@@ -18,6 +18,7 @@ class SimpleForm extends React.Component {
   }
 
   render() {
+  
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
