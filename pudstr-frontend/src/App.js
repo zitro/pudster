@@ -17,7 +17,7 @@ class App extends Component {
 			let LOCATIONSURL =''
 
 			if (this.state.location){
-				LOCATIONSURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.state.location.lat},${this.state.location.lng}&radius=10000&type=overall&keyword=restroom&key=AIzaSyB-QdrzvR2sNlHBYZQjLe59ADkfmjQ3oRY`
+				LOCATIONSURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.state.location.lat},${this.state.location.lng}&radius=2500&type=overall&keyword=restroom&key=AIzaSyB-QdrzvR2sNlHBYZQjLe59ADkfmjQ3oRY`
 
 				fetch(LOCATIONSURL)
 					.then(res => res.json())
@@ -42,13 +42,20 @@ class App extends Component {
 
 	setMapContainer=()=>{
 		if (this.state.location !== null){
-			return <MapContainer location={this.state.location} visible={this.state.visible} tpLocations={this.state.tpLocations}/>
+			return <MapContainer
+			location={this.state.location} visible={this.state.visible} tpLocations={this.state.tpLocations}
+			/>
 		}
 	}
   render() {
 
     return (
-      <div className="App">
+      	<div className="App">
+				<header className="App-header">
+					<img src="http://bryanortiz.me/t2.png" className="App-logo" alt="logo" />
+					<h1 className="App-title">Welcome to Pudstr</h1>
+				</header>
+
 				<APPTEST2 grabLocation={this.grabLocation}/>
 				{this.setMapContainer()}
       </div>
