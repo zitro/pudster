@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import MapContainer from './components/MapContainer'
 import './App.css';
-import APPTEST2 from './components/SearchForm';
+import SEARCHFORM from './components/SearchForm';
 import MapContainer from './components/MapContainer'
 
 
@@ -50,13 +50,14 @@ class App extends Component {
   render() {
 
     return (
-      	<div className="App">
+      <div className="App">
 				<header className="App-header">
 					<img src="http://bryanortiz.me/t2.png" className="App-logo" alt="logo" />
 					<h1 className="App-title">Welcome to Pudstr</h1>
 				</header>
-
-				<APPTEST2 grabLocation={this.grabLocation}/>
+				<div className="Seachform">
+					<SEARCHFORM grabLocation={this.grabLocation}/>
+				</div>
 				{this.setMapContainer()}
       </div>
     );

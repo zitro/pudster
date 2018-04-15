@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+.Searchform{
+	padding: 10,10,10,10;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
