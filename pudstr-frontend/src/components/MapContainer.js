@@ -3,6 +3,7 @@ import {Map,InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 import '../App.css';
 import './searchform.css';
 import APIKEY from './Apikey'
+import { Redirect } from 'react-router';
 
 export class MapContainer extends Component {
 	state={
@@ -47,7 +48,7 @@ export class MapContainer extends Component {
 		padding: '10 px'
 	}
     return (
-		<div className="Map">
+		<div>
       <Map className="Map"
 				google={this.props.google}
 				zoom={14}

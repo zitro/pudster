@@ -45,7 +45,8 @@ export default class UserLogin extends Component{
 	}
 
 	parseInfo=(json)=>{
-		console.log(this.state.input)
+		console.log(this.props.unlock)
+		// this.props.unlock
 		let jsonArray=json.find((user)=>{
 			return this.state.input===user.name
 		})

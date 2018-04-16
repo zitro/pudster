@@ -1,11 +1,12 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import './searchform.css';
+import { Redirect } from 'react-router';
 
 class SimpleForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: ''}
+    this.state = { address: '',locked:true}
     this.onChange = (address) => this.setState({ address })
   }
 
@@ -26,10 +27,13 @@ class SimpleForm extends React.Component {
     }
 
     return (
-      <form className='SearchForm' onSubmit={this.handleFormSubmit}>
-        <PlacesAutocomplete inputProps={inputProps} />
-        <button type="submit">Submit</button>
-      </form>
+			<div>
+			{this.props.locked ? <Redirect to="/" /> : null}
+	      <form className='SearchForm' onSubmit={this.handleFormSubmit}>
+	        <PlacesAutocomplete inputProps={inputProps} />
+	        <button type="submit">Submit</button>
+	      </form>
+			</div>
     )
   }
 }
