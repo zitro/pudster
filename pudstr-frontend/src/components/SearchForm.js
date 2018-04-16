@@ -1,10 +1,11 @@
 import React from 'react'
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import './searchform.css';
 
 class SimpleForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: 'Your Location Please'}
+    this.state = { address: ''}
     this.onChange = (address) => this.setState({ address })
   }
 
@@ -18,14 +19,14 @@ class SimpleForm extends React.Component {
   }
 
   render() {
-  
+
     const inputProps = {
       value: this.state.address,
       onChange: this.onChange,
     }
 
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form className='SearchForm' onSubmit={this.handleFormSubmit}>
         <PlacesAutocomplete inputProps={inputProps} />
         <button type="submit">Submit</button>
       </form>

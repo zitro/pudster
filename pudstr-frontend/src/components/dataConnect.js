@@ -6,7 +6,7 @@ userForm.addEventListener('click', (event) => {
 				event.preventDefault()
 				userName = document.getElementById('userName')
 				const submitVal = userName.value
-				//still need to get points
+		
 				addNamePoints(submitVal, 0, '')
 			})
 

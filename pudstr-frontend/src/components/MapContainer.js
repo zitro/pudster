@@ -1,12 +1,29 @@
 import React, { Component } from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map,InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import '../App.css';
+import './searchform.css';
 import APIKEY from './Apikey'
 
 export class MapContainer extends Component {
-	  state={
-	  }
-	onMarkerClick = (event) => {
-		console.log(event.name)
+	state={
+		activeMarker:{},
+		showingInfoWindow:false,
+		selectedPlace:{},
+		matchTP:''
+	}
+
+	onMarkerClick = (props, marker) => {
+		let matchFound = this.props.tpLocations.results.find(location => {
+			return location.geometry.location === props.position
+		})
+		console.log(matchFound)
+
+		this.setState({
+			activeMarker:marker,
+			selectedPlace:props,
+			showingInfoWindow:true,
+			matchTP: matchFound
+		})
 	}
 
   render() {
@@ -21,21 +38,29 @@ export class MapContainer extends Component {
 				 anchor: new window.google.maps.Point(32,32),
 				 scaledSize: new window.google.maps.Size(64,64)
 			 	}}
-				onClick={this.onMarkerClick} name={'Pudster Location'} position={location.geometry.location} />
+				onClick={this.onMarkerClick} name={'Pudstr Location'} position={location.geometry.location} />
 		 })
 	}
 
+	const style = {
+		height: '64%',
+		padding: '10 px'
+	}
     return (
-		<div>
-      <Map
+		<div className="Map">
+      <Map className="Map"
 				google={this.props.google}
-				zoom={15}
+				zoom={14}
 				initialCenter={this.props.location}
-				visible={true}>
+				center={this.props.location}
+				visible={true}
+				style={style}
+				onClick={this.rerenderMap}>
 
         <Marker
 					name={'You Are Here'}
 					onClick={this.onMarkerClick}
+					position={this.props.location}
 					icon={{
 						url: "http://bryanortiz.me/yahi1.png",
 						anchor: new window.google.maps.Point(32,32),
@@ -43,7 +68,16 @@ export class MapContainer extends Component {
 				 	}}
 				 />
 				{locationMarkers}
-
+				<InfoWindow
+				marker={this.state.activeMarker}
+				visible={this.state.showingInfoWindow}>
+					<div>
+						<h4>{this.state.matchTP.name}</h4>
+						<p>{this.state.matchTP.opening_hours ? `Currently Open: ${this.state.matchTP.opening_hours.open_now}` : null}</p>
+						<p>Address: {this.state.matchTP.vicinity}</p>
+						<p>{this.state.matchTP.rating ? `Rating: ${this.state.matchTP.rating}` : null}</p>
+					</div>
+				</InfoWindow>
       </Map>
 		</div>
     );

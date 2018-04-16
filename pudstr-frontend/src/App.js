@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 // import MapContainer from './components/MapContainer'
 import './App.css';
 import SEARCHFORM from './components/SearchForm';
-import MapContainer from './components/MapContainer'
+import MapContainer from './components/MapContainer';
+import {Route} from 'react-router-dom'
+import UserLogin from './components/Userlogin'
 
 
 class App extends Component {
@@ -52,11 +54,12 @@ class App extends Component {
     return (
       <div className="App">
 				<header className="App-header">
-					<img src="http://bryanortiz.me/t2.png" className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to Pudstr</h1>
+					<img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" />
+					<h1 className="App-titles">Welcome to Pudstr</h1>
 				</header>
+				<Route exact path="/" render={()=><UserLogin />}/>
 				<div className="Seachform">
-					<SEARCHFORM grabLocation={this.grabLocation}/>
+					<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation}/>}/>
 				</div>
 				{this.setMapContainer()}
       </div>

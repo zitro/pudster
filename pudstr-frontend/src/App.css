@@ -4,20 +4,24 @@
 .Searchform{
 	padding: 10,10,10,10;
 }
+.Map {
+	height: 50%;
+}
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 2s linear;
   height: 80px;
 }
 
 .App-header {
   background-color: #222;
   height: 150px;
-  padding: 20px;
+  padding: 10px;
   color: white;
 }
 
-.App-title {
+.App-titles {
+	font-family: 'Black Han Sans';
   font-size: 1.5em;
 }
 
