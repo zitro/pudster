@@ -56,7 +56,7 @@ export class MapContainer extends Component {
     return (
 		<div className="Map">
 		{this.state.clicked ? <Redirect to="/comments"/> : null}
-      <Map
+      <Map className="Map"
 				google={this.props.google}
 				zoom={14}
 				initialCenter={this.props.location}

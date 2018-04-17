@@ -12,7 +12,7 @@ class SimpleForm extends React.Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault()
-
+		this.props.setSideNav()
     geocodeByAddress(this.state.address)
       .then(results => getLatLng(results[0]))
       .then(latLng => this.props.grabLocation(latLng))

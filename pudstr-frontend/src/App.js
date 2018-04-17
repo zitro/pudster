@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 // import MapContainer from './components/MapContainer'
 import './App.css';
+import './realappcssnotreally.css';
+
 import SEARCHFORM from './components/SearchForm';
 import MapContainer from './components/MapContainer';
 import {Route, Link} from 'react-router-dom';
 import UserLogin from './components/Userlogin';
 import Comments from './components/Comments';
-import './realappcssnotreally.css';
 
 
 class App extends Component {
@@ -49,7 +50,7 @@ class App extends Component {
 			this.setState ({
 				tpLocations: json
 
-			},() => console.log(this.state.tpLocations))
+			})
 
 		}
 
@@ -77,15 +78,19 @@ class App extends Component {
 
 	unlock=()=>{
 		this.setState({
-			locked:false,
-			sidenav:true
-		},()=>console.log(this.state.locked))
+			locked:false
+		})
 	}
 
 	setAppUser=(user)=>{
-		// debugger
 		this.setState({
 			user
+		})
+	}
+
+	setSideNav=()=>{
+		this.setState({
+			sidenav:true
 		})
 	}
 
@@ -93,15 +98,16 @@ class App extends Component {
     return (
       <div className="App">
 				<header className="App-header">
-				<Link to='/'>Exit</Link>
+
 					<img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" />
 					<h1 className="App-titles">Welcome to Pudstr</h1>
 				</header>
 				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser}/>}/>
 				<div className="MainPage">
-				<div className="Seachform">
-					<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation} locked={this.state.locked}/>}/>
-				</div>
+					<div className="SeachForm">
+						<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation} locked={this.state.locked}
+						setSideNav={this.setSideNav}/>}/>
+					</div>
 				{this.setMapContainer()}
 				</div>
 

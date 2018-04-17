@@ -8,7 +8,7 @@ export default class Comments extends Component{
 
 	state={
 		text:'',
-		rating:0
+		rating:1
 	}
 
 createComment=(event)=>{
@@ -16,7 +16,6 @@ createComment=(event)=>{
 	let address=this.props.matchTP.vicinity
 	let comment=this.state.text
 	let rating=this.state.rating
-	console.log(address)
 	fetch(`${BASE_URL}/comments`, {
 		method: 'POST',
 		headers: {
@@ -31,11 +30,10 @@ createComment=(event)=>{
 		})
 	})
 	.then((res) => res.json())
-	.then(json => {
-		// console.log(json)
-		debugger
+	.then(json => { console.log(json)
 	})
 }
+
 
 
 	handleChange=(event)=>{
@@ -51,7 +49,13 @@ createComment=(event)=>{
 	}
 
 	render(){
-		// console.log(this.props.comments)
+		let filterComments = this.props.comments.filter((comment)=>{
+			return comment.title == this.props.matchTP.vicinity
+		})
+		let commentList = filterComments.map((comment)=>{
+			return<p>"{comment.text}" -{this.props.user.name}</p>
+		})
+
 		return(
 			<div>
 				<h2>{this.props.matchTP.vicinity}</h2><br/>
@@ -66,6 +70,8 @@ createComment=(event)=>{
 					</select>
 					<input type='submit'/>
 				</form>
+				{commentList}
+
 			</div>
 		)
 	}
