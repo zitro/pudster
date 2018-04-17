@@ -4,31 +4,36 @@ import '../App.css';
 import './searchform.css';
 import APIKEY from './Apikey'
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom'
 
 export class MapContainer extends Component {
 	state={
 		activeMarker:{},
 		showingInfoWindow:false,
 		selectedPlace:{},
-		matchTP:''
+		matchTP:'',
+		clicked:false
 	}
 
 	onMarkerClick = (props, marker) => {
 		let matchFound = this.props.tpLocations.results.find(location => {
 			return location.geometry.location === props.position
 		})
-		console.log(matchFound)
-
 		this.setState({
 			activeMarker:marker,
 			selectedPlace:props,
 			showingInfoWindow:true,
 			matchTP: matchFound
 		})
+		this.props.setMatchTP(matchFound)
 	}
 
-  render() {
+	mainMarkerClick=()=>{
+	}
 
+
+  render() {
+	// console.log(this.rerenderMap)
 	let locationMarkers = []
 	if (this.props.tpLocations.results){
 		 locationMarkers = this.props.tpLocations.results.map((location) => {
@@ -44,23 +49,24 @@ export class MapContainer extends Component {
 	}
 
 	const style = {
-		height: '64%',
+		height: '63%',
+		width: '85%',
 		padding: '10 px'
 	}
     return (
-		<div>
-      <Map className="Map"
+		<div className="Map">
+		{this.state.clicked ? <Redirect to="/comments"/> : null}
+      <Map
 				google={this.props.google}
 				zoom={14}
 				initialCenter={this.props.location}
 				center={this.props.location}
 				visible={true}
-				style={style}
-				onClick={this.rerenderMap}>
+				style={style}>
 
         <Marker
 					name={'You Are Here'}
-					onClick={this.onMarkerClick}
+					onClick={this.mainMarkerClick}
 					position={this.props.location}
 					icon={{
 						url: "http://bryanortiz.me/yahi1.png",
@@ -70,6 +76,7 @@ export class MapContainer extends Component {
 				 />
 				{locationMarkers}
 				<InfoWindow
+				onOpen={this.mainMarkerClick}
 				marker={this.state.activeMarker}
 				visible={this.state.showingInfoWindow}>
 					<div>

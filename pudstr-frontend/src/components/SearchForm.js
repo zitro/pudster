@@ -25,7 +25,6 @@ class SimpleForm extends React.Component {
       value: this.state.address,
       onChange: this.onChange,
     }
-
     return (
 			<div>
 			{this.props.locked ? <Redirect to="/" /> : null}

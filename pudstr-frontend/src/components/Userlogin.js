@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
+// import { Button, Divider, Form } from 'semantic-ui-react'
 const BASE_URL = 'http://localhost:3000';
 
 export default class UserLogin extends Component{
@@ -14,7 +15,7 @@ export default class UserLogin extends Component{
 	handleChange = (e) => {
 		this.setState({
 			input: e.target.value
-		}, () => console.log(this.state.input))
+		})
 	}
 
 	handleCreateSubmit = (event) => {
@@ -33,7 +34,7 @@ export default class UserLogin extends Component{
 		})
 		.then((res) => res.json())
 		.then(json => {
-			console.log('submit stuff')
+			console.log(json)
 		})
 	}
 
@@ -45,17 +46,14 @@ export default class UserLogin extends Component{
 	}
 
 	parseInfo=(json)=>{
-		console.log(this.props.unlock)
-		// this.props.unlock
+		this.props.unlock()
 		let jsonArray=json.find((user)=>{
 			return this.state.input===user.name
 		})
 		this.setState({
-			user:jsonArray
-		},()=>console.log(this.state.user))
-		this.setState({
+			user:jsonArray,
 			visible: false
-		})
+		},()=>this.props.setAppUser(this.state.user))
 	}
 
 	handleCreateClick=()=>{
@@ -78,17 +76,20 @@ export default class UserLogin extends Component{
 				{this.state.alreadyUser ?
 					<form onSubmit={this.handleGetSubmit}>
 						<br/>
-						<label>Log In</label><br/>
+						<h2>Log In</h2>
+						<br/>
 						<input type="text" placeholder="name" name="name" onChange={this.handleChange}/>
-						<input type="submit"/>
+						<input type="submit" />
+						<br/> <p> </p>
 						<p onClick={this.handleCreateClick}>Not a User? Make new account</p>
 					</form>  :
 					<form onSubmit={this.handleCreateSubmit}>
 						<br/>
-						<label>Create New Account</label>
+						<h2>Create New Account</h2>
 						<br/>
 						<input type="text" placeholder="Enter Name" name="name" onChange={this.handleChange}/>
 						<input type="submit"/>
+						<br/><p> </p>
 						<p onClick={this.handleBackClick}>Back</p>
 					</form>}
 			</div>

@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import './App.css';
 import SEARCHFORM from './components/SearchForm';
 import MapContainer from './components/MapContainer';
-import {Route, Link} from 'react-router-dom'
-import UserLogin from './components/Userlogin'
+import {Route, Link} from 'react-router-dom';
+import UserLogin from './components/Userlogin';
+import Comments from './components/Comments';
+import './realappcssnotreally.css';
 
 
 class App extends Component {
@@ -12,7 +14,11 @@ class App extends Component {
 		location:null,
 		visible:false,
 		tpLocations: [],
-		locked:true
+		locked:true,
+		matchTP:{},
+		sidenav:false,
+		comments:[],
+		user:{}
 	}
 
 
@@ -25,7 +31,18 @@ class App extends Component {
 				fetch(LOCATIONSURL)
 					.then(res => res.json())
 					.then(json => this.setTpLocation(json))
+
+					fetch(`http://localhost:3000/comments`)
+					.then(res=>res.json())
+					.then(json=>this.setComments(json))
+
 			}
+		}
+
+		setComments=(json)=>{
+			this.setState({
+				comments:json
+			})
 		}
 
 		setTpLocation = (json) => {
@@ -34,6 +51,12 @@ class App extends Component {
 
 			},() => console.log(this.state.tpLocations))
 
+		}
+
+		setMatchTP=(matchTP)=>{
+			this.setState({
+				matchTP: matchTP
+			})
 		}
 
 	grabLocation=(latLng)=>{
@@ -47,13 +70,22 @@ class App extends Component {
 		if (this.state.location !== null){
 			return <MapContainer
 			location={this.state.location} visible={this.state.visible} tpLocations={this.state.tpLocations}
+			setMatchTP={this.setMatchTP}
 			/>
 		}
 	}
 
 	unlock=()=>{
 		this.setState({
-			locked:false
+			locked:false,
+			sidenav:true
+		},()=>console.log(this.state.locked))
+	}
+
+	setAppUser=(user)=>{
+		// debugger
+		this.setState({
+			user
 		})
 	}
 
@@ -65,11 +97,21 @@ class App extends Component {
 					<img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" />
 					<h1 className="App-titles">Welcome to Pudstr</h1>
 				</header>
-				<Route exact path="/" render={()=><UserLogin unlock={this.unlock}/>}/>
+				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser}/>}/>
+				<div className="MainPage">
 				<div className="Seachform">
-					<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation}/>}/>
+					<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation} locked={this.state.locked}/>}/>
 				</div>
 				{this.setMapContainer()}
+				</div>
+
+				{this.state.sidenav ? <div className="sidenav">
+				<div className="comments">
+					<Comments matchTP={this.state.matchTP} comments={this.state.comments} user={this.state.user}/>
+				</div>
+				</div> : null}
+
+
       </div>
     );
   }
