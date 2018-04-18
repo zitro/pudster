@@ -54,9 +54,9 @@ export class MapContainer extends Component {
 		padding: '10 px'
 	}
     return (
-		<div className="Map">
+		<div>
 		{this.state.clicked ? <Redirect to="/comments"/> : null}
-      <Map className="Map"
+      <Map className='ui modal' className="Map"
 				google={this.props.google}
 				zoom={14}
 				initialCenter={this.props.location}

@@ -19,7 +19,8 @@ class App extends Component {
 		matchTP:{},
 		sidenav:false,
 		comments:[],
-		user:{}
+		user:{},
+		allusers:[]
 	}
 
 
@@ -33,13 +34,16 @@ class App extends Component {
 					.then(res => res.json())
 					.then(json => this.setTpLocation(json))
 
-					fetch(`http://localhost:3000/comments`)
-					.then(res=>res.json())
-					.then(json=>this.setComments(json))
+				this.fetchComments()
 
 			}
 		}
 
+fetchComments=()=>{
+	fetch(`http://localhost:3000/comments`)
+	.then(res=>res.json())
+	.then(json=>this.setComments(json))
+}
 		setComments=(json)=>{
 			this.setState({
 				comments:json
@@ -94,26 +98,34 @@ class App extends Component {
 		})
 	}
 
+	getUsers=(json)=>{
+		this.setState({
+			allusers: json
+		})
+	}
+
   render() {
     return (
       <div className="App">
 				<header className="App-header">
 
 					<img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" />
-					<h1 className="App-titles">Welcome to Pudstr</h1>
+					<h1 className="App-titles">Welcome to Pudstr {this.state.user.name}</h1>
 				</header>
-				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser}/>}/>
+				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser} getUsers={this.getUsers}/>}/>
 				<div className="MainPage">
 					<div className="SeachForm">
 						<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation} locked={this.state.locked}
 						setSideNav={this.setSideNav}/>}/>
 					</div>
-				{this.setMapContainer()}
+				<div className="ui divided items">{this.setMapContainer()}</div>
 				</div>
 
 				{this.state.sidenav ? <div className="sidenav">
 				<div className="comments">
-					<Comments matchTP={this.state.matchTP} comments={this.state.comments} user={this.state.user}/>
+					<Comments matchTP={this.state.matchTP} comments={this.state.comments} user={this.state.user}
+					allusers={this.state.allusers}
+					fetchComments={this.fetchComments}/>
 				</div>
 				</div> : null}
 

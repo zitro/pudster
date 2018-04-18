@@ -6,7 +6,7 @@ import { Redirect } from 'react-router';
 class SimpleForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { address: '',locked:true}
+    this.state = { address: 'Enter Your Location',locked:true}
     this.onChange = (address) => this.setState({ address })
   }
 
@@ -28,9 +28,9 @@ class SimpleForm extends React.Component {
     return (
 			<div>
 			{this.props.locked ? <Redirect to="/" /> : null}
-	      <form className='SearchForm' onSubmit={this.handleFormSubmit}>
+				<form className='SearchForm' onSubmit={this.handleFormSubmit}>
 	        <PlacesAutocomplete inputProps={inputProps} />
-	        <button type="submit">Submit</button>
+	        <button className="ui button green" type="submit">Submit</button>
 	      </form>
 			</div>
     )

@@ -1,9 +1,9 @@
 
 .SearchForm{
 	padding: 10px;
-	z-index: 50;
+	z-index: -1;
 }
 
 .Map{
-	z-index: -50;
+	z-index: -2;
 }

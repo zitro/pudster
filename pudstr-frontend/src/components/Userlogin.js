@@ -46,6 +46,7 @@ export default class UserLogin extends Component{
 	}
 
 	parseInfo=(json)=>{
+		this.props.getUsers(json)
 		this.props.unlock()
 		let jsonArray=json.find((user)=>{
 			return this.state.input===user.name
@@ -78,19 +79,21 @@ export default class UserLogin extends Component{
 						<br/>
 						<h2>Log In</h2>
 						<br/>
-						<input type="text" placeholder="name" name="name" onChange={this.handleChange}/>
-						<input type="submit" />
+						<div className="ui input focus">
+						<input type="text" placeholder="name" name="name" onChange={this.handleChange}/></div>
+						<input className="ui button green" type="submit" />
 						<br/> <p> </p>
-						<p onClick={this.handleCreateClick}>Not a User? Make new account</p>
+						<button className="ui button primary"><p onClick={this.handleCreateClick}>Not a User? Make new account</p></button>
 					</form>  :
 					<form onSubmit={this.handleCreateSubmit}>
 						<br/>
 						<h2>Create New Account</h2>
 						<br/>
-						<input type="text" placeholder="Enter Name" name="name" onChange={this.handleChange}/>
-						<input type="submit"/>
+						<div className="ui input focus">
+						<input type="text" placeholder="Enter Name" name="name" onChange={this.handleChange}/></div>
+						<input className="ui button green" type="submit"/>
 						<br/><p> </p>
-						<p onClick={this.handleBackClick}>Back</p>
+						<button className="ui button primary"><p onClick={this.handleBackClick}>Back</p></button>
 					</form>}
 			</div>
 		)

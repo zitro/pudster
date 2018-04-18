@@ -32,6 +32,7 @@ createComment=(event)=>{
 	.then((res) => res.json())
 	.then(json => { console.log(json)
 	})
+	this.props.fetchComments()
 }
 
 
@@ -52,13 +53,23 @@ createComment=(event)=>{
 		let filterComments = this.props.comments.filter((comment)=>{
 			return comment.title == this.props.matchTP.vicinity
 		})
+		let user = ''
+
 		let commentList = filterComments.map((comment)=>{
-			return<p>"{comment.text}" -{this.props.user.name}</p>
+			 user = this.props.allusers.find((user)=>{
+				return user.id == comment.user_id
+			})
+		return<div className="ui orange raised card">
+			<p>"{comment.text}"</p>
+			<p className="author">-{user.name}</p>
+			</div>
 		})
+
+
 
 		return(
 			<div>
-				<h2>{this.props.matchTP.vicinity}</h2><br/>
+				<h3>{this.props.matchTP.vicinity}</h3><br/>
 				<form onSubmit={this.createComment}><br/>
 					<textarea onChange={this.handleChange}/><br/>
 					<select onChange={this.onDropdownChange}>
@@ -71,7 +82,6 @@ createComment=(event)=>{
 					<input type='submit'/>
 				</form>
 				{commentList}
-
 			</div>
 		)
 	}

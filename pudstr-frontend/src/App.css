@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+
+	body{
+		background-image: url('http://bryanortiz.me/bg6.jpg')
+	}
+
+	body, html{
+		height: 0%;
+	}
+
 .App-logo {
   animation: App-logo-spin infinite 2s linear;
   height: 80px;
@@ -17,7 +26,7 @@
 
 .App-titles {
 	font-family: 'Black Han Sans';
-  font-size: 1.5em;
+  font-size: 1.8em;
 }
 
 .App-intro {
