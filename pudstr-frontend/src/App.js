@@ -109,7 +109,7 @@ fetchComments=()=>{
       <div className="App">
 				<header className="App-header">
 
-					<img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" />
+					<marquee><img src="https://vignette.wikia.nocookie.net/tfbnebs/images/d/d5/Toilet.png/revision/latest?cb=20140712011831" className="App-logo" alt="logo" /></marquee>
 					<h1 className="App-titles">Welcome to Pudstr {this.state.user.name}</h1>
 				</header>
 				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser} getUsers={this.getUsers}/>}/>

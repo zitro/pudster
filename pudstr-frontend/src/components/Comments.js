@@ -32,7 +32,6 @@ createComment=(event)=>{
 	.then((res) => res.json())
 	.then(json => { console.log(json)
 	})
-	this.props.fetchComments()
 }
 
 

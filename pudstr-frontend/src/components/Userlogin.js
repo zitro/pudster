@@ -83,7 +83,7 @@ export default class UserLogin extends Component{
 						<input type="text" placeholder="name" name="name" onChange={this.handleChange}/></div>
 						<input className="ui button green" type="submit" />
 						<br/> <p> </p>
-						<button className="ui button primary"><p onClick={this.handleCreateClick}>Not a User? Make new account</p></button>
+						<p className="ui button primary" onClick={this.handleCreateClick}>Not a User? Make new account</p>
 					</form>  :
 					<form onSubmit={this.handleCreateSubmit}>
 						<br/>
@@ -93,7 +93,7 @@ export default class UserLogin extends Component{
 						<input type="text" placeholder="Enter Name" name="name" onChange={this.handleChange}/></div>
 						<input className="ui button green" type="submit"/>
 						<br/><p> </p>
-						<button className="ui button primary"><p onClick={this.handleBackClick}>Back</p></button>
+						<p className="ui button primary" onClick={this.handleBackClick}>Back</p>
 					</form>}
 			</div>
 		)
