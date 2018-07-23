@@ -8,13 +8,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-
+```
 The Ruby Gems
 ::run (bundle install) from the terminal inside the pudstr-backend directory
 
 Javascript
 ::run (npm install) from the terminal inside the pudstr-frontend directory
-
+```
 
 source "https://rubygems.org"
 ```
