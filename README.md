@@ -1,6 +1,6 @@
 # Pudstr
 
-Sometimes nature calls and you're left wondering where the restrooms are and if they're fit for use and that's where Pudstr comes in. Pudstr is a community driven restroom locating application with a graffiti wall where users can leave messages and reviews about the restroom. The Pudster front-end was built using HTML, CSS and Javascript with React and the back-end was built on ruby on rails.
+Sometimes nature calls and you're left wondering where the restrooms are and if they're fit for use and that's where Pudstr comes in. Pudstr is a community driven restroom locating application with a graffiti wall where users can leave messages and reviews about the restroom. The Pudstr front-end was built using HTML, CSS and Javascript with React and the back-end was built on ruby on rails.
 
 ## Getting Started
 
