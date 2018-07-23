@@ -10,12 +10,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 The Ruby Gems
-gem 'sinatra-activerecord'
-gem 'sqlite3'
-gem 'pry'
-gem 'require_all'
-gem 'rest-client'
-gem 'json'
+::run (bundle install) from the terminal inside the pudstr-backend directory
+
+Javascript
+::run (npm install) from the terminal inside the pudstr-frontend directory
+
+
 source "https://rubygems.org"
 ```
 * [Google API]
